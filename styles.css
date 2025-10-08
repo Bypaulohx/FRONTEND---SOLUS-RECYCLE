@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #cceee0;
+}
+
+#gameArea {
+  position: relative;
+  margin: 20px auto;
+  width: 600px;
+  height: 400px;
+  background-color: #aee0b5;
+  border: 3px solid #2e8b57;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+#player {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #3498db;
+  top: 180px;
+  left: 280px;
+  border-radius: 8px;
+}
+
+.trash {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #ffb347;
+  border-radius: 6px;
+}
+
+#station {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: #2ecc71;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 10px;
+}
+
+#score {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#message {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #2e8b57;
+  font-weight: bold;
+}
