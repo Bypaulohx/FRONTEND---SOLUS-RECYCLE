@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BiUser, BiBell, BiHelpCircle, BiLogOut } from 'react-icons/bi';
 
-const Backend_API = 'Backend_API'; // Substitua pela sua URL real
+const Backend_API = 'Backend_API';
 
 const getAuthHeaders = () => {
     const token = localStorage.getItem('authToken') || 'token'; 
