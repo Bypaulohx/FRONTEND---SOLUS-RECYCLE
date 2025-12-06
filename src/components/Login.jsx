@@ -10,7 +10,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://seu-backend.com/api/login', {
+      const response = await fetch('Backend_API', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ const Login = () => {
 
       if (response.ok) {
         console.log('Login bem-sucedido:', data);
-        window.location.href = '/Dashboard';
+        window.location.href = '/Home';
       } else {
         setErro(data.mensagem || 'Erro ao fazer login');
       }
