@@ -1,4 +1,3 @@
-// Perfil.jsx
 import React, { useState, useEffect } from 'react';
 import { BiUser, BiBell, BiHelpCircle, BiLogOut } from 'react-icons/bi';
 
