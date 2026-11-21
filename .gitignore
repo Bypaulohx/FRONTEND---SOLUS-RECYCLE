@@ -35,3 +35,23 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Python / FastAPI
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+backend/data/*.db
+backend/data/uploads/
+
+# Flutter / Dart
+.melos/
+.dart_tool/
+.packages
+.pub-cache/
+build/
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+*.iml
