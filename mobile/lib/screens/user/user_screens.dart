@@ -1,0 +1,14 @@
+export 'home.dart';
+export 'mapa.dart';
+export 'detalhes_ponto.dart';
+export 'agendamento.dart';
+export 'confirmacao_agendamento.dart';
+export 'confirmacao_cancelamento.dart';
+export 'qr_code.dart';
+export 'reciclagem.dart';
+export 'recompensas.dart';
+export 'perfil.dart';
+export 'notificacoes.dart';
+export 'meus_dados.dart';
+export 'ajuda.dart';
+export 'conversas.dart';
