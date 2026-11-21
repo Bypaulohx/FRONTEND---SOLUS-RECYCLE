@@ -1,32 +1,51 @@
-import { useState, useRef } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import { authApi } from '../api/client';
+
+type Mode = 'reset' | 'register';
+
+interface VerificationState {
+  email?: string;
+  mode?: Mode;
+}
+
+const CODE_LENGTH = 6;
 
 export default function Verificacao() {
   const location = useLocation();
-  const email = (location.state as { email?: string } | null)?.email ?? (typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('recovery_email') : null) ?? '';
-  const [code, setCode] = useState(['', '', '', '']);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const refs = [useRef<HTMLInputElement>(null), useRef<HTMLInputElement>(null), useRef<HTMLInputElement>(null), useRef<HTMLInputElement>(null)];
   const navigate = useNavigate();
+  const state = (location.state as VerificationState | null) ?? {};
+  const storedEmail =
+    typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('recovery_email') : null;
+  const email = state.email ?? storedEmail ?? '';
+  const mode: Mode = state.mode ?? 'reset';
 
-  function handleChange(i: number, v: string) {
-    if (v.length > 1) v = v.slice(-1);
+  const [code, setCode] = useState<string[]>(Array(CODE_LENGTH).fill(''));
+  const [error, setError] = useState('');
+  const [info, setInfo] = useState('');
+  const [loading, setLoading] = useState(false);
+  const refs = useRef<(HTMLInputElement | null)[]>([]);
+
+  function handleChange(index: number, value: string) {
+    const digits = value.replace(/\D/g, '').slice(-1);
     const next = [...code];
-    next[i] = v.replace(/\D/g, '');
+    next[index] = digits;
     setCode(next);
-    if (v && i < 3) refs[i + 1].current?.focus();
+    if (digits && index < CODE_LENGTH - 1) refs.current[index + 1]?.focus();
   }
-  function handleKeyDown(i: number, e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Backspace' && !code[i] && i > 0) refs[i - 1].current?.focus();
+
+  function handleKeyDown(index: number, event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'Backspace' && !code[index] && index > 0) {
+      refs.current[index - 1]?.focus();
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const fullCode = code.join('');
-    if (fullCode.length !== 4) {
-      setError('Insira o código de 4 dígitos.');
+    if (fullCode.length !== CODE_LENGTH) {
+      setError(`Insira o código de ${CODE_LENGTH} dígitos.`);
       return;
     }
     if (!email) {
@@ -35,42 +54,79 @@ export default function Verificacao() {
     }
     setError('');
     setLoading(true);
-    const { error: err } = await authApi.verifyCode({ email, code: fullCode });
+    if (mode === 'register') {
+      const { error: err } = await authApi.verifyRegistration(email, fullCode);
+      setLoading(false);
+      if (err) {
+        setError(err);
+        return;
+      }
+      navigate('/login', { state: { message: 'Cadastro concluído! Faça seu login.' } });
+      return;
+    }
+    const { error: err } = await authApi.verifyResetCode(fullCode, 'USER');
     setLoading(false);
     if (err) {
       setError(err);
       return;
     }
-    navigate('/nova-senha', { state: { email, code: fullCode } });
+    navigate('/nova-senha', { state: { code: fullCode, principalType: 'USER' } });
+  }
+
+  async function handleResend() {
+    if (!email) {
+      setError('Informe seu e-mail novamente para reenviar o código.');
+      return;
+    }
+    setLoading(true);
+    const { error: err } =
+      mode === 'register'
+        ? await authApi.resendVerification(email)
+        : await authApi.initiateReset(email, 'USER');
+    setLoading(false);
+    if (err) setError(err);
+    else setInfo('Um novo código foi enviado para o seu e-mail.');
   }
 
   return (
     <div className="container form-container">
-      <Link to="/recuperacao" className="back-btn">←</Link>
-      <h2>Verificação<br />Insira o código de 4 dígitos que enviamos para o seu email</h2>
+      <BackButton to={mode === 'register' ? '/cadastro' : '/recuperacao'} />
+      <h2>
+        Verificação<br />
+        Insira o código de {CODE_LENGTH} dígitos que enviamos para o seu e-mail
+      </h2>
       <form className="form" onSubmit={handleSubmit}>
         <div className="code-container">
-          {[0, 1, 2, 3].map((i) => (
+          {code.map((digit, index) => (
             <input
-              key={i}
-              ref={refs[i]}
+              key={index}
+              ref={(el) => {
+                refs.current[index] = el;
+              }}
               type="text"
               inputMode="numeric"
               maxLength={1}
               className="code-input"
-              value={code[i]}
-              onChange={(e) => handleChange(i, e.target.value)}
-              onKeyDown={(e) => handleKeyDown(i, e)}
+              value={digit}
+              onChange={(e) => handleChange(index, e.target.value)}
+              onKeyDown={(e) => handleKeyDown(index, e)}
+              aria-label={`Dígito ${index + 1}`}
               required
             />
           ))}
         </div>
         {error && <p className="form-error">{error}</p>}
-        <button type="submit" className="green-btn" disabled={loading}>
+        {info && <p className="page-text success-text">{info}</p>}
+        <button type="submit" disabled={loading}>
           {loading ? 'Verificando...' : 'Verificar'}
         </button>
       </form>
-      <p className="page-text">Não recebeu o código? <Link to="/recuperacao">Reenviar</Link></p>
+      <p className="auth-footer">
+        Não recebeu o código?{' '}
+        <Link to="#" onClick={(e) => { e.preventDefault(); void handleResend(); }} className="register-link">
+          Reenviar
+        </Link>
+      </p>
     </div>
   );
 }

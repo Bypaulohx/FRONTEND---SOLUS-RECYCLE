@@ -1,36 +1,43 @@
 import { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { authApi } from '../api/client';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
+import PasswordField from '../components/PasswordField';
+import { authApi, type PrincipalType } from '../api/client';
+
+interface RecoveryState {
+  code?: string;
+  principalType?: PrincipalType;
+}
 
 export default function NovaSenha() {
   const location = useLocation();
-  const state = location.state as { email?: string; code?: string } | null;
-  const email = state?.email ?? (typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('recovery_email') : null) ?? '';
-  const code = state?.code ?? '';
+  const navigate = useNavigate();
+  const state = (location.state as RecoveryState | null) ?? {};
+  const code = state.code ?? '';
+  const principalType: PrincipalType = state.principalType ?? 'USER';
+
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
     if (newPassword !== confirmPassword) {
-      setError('As senhas não coincidem.');
+      setError('As senhas não coincidem');
       return;
     }
-    if (newPassword.length < 6) {
-      setError('A senha deve ter pelo menos 6 caracteres.');
+    if (newPassword.length < 8) {
+      setError('A senha deve ter pelo menos 8 caracteres');
       return;
     }
-    if (!email || !code) {
-      setError('Sessão inválida. Refça a recuperação de senha.');
+    if (!code) {
+      setError('Sessão inválida. Refaça a recuperação de senha.');
       return;
     }
     setLoading(true);
-    const { error: err } = await authApi.resetPassword({ email, code, newPassword });
+    const { error: err } = await authApi.resetPassword(code, principalType, newPassword);
     setLoading(false);
     if (err) {
       setError(err);
@@ -41,36 +48,27 @@ export default function NovaSenha() {
 
   return (
     <div className="container form-container">
-      <Link to="/verificacao" className="back-btn">←</Link>
+      <BackButton to="/verificacao" />
       <h2>Pronto!<br />Crie uma nova senha</h2>
       <form className="form" onSubmit={handleSubmit}>
-        <div className="password-container">
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Digite uma nova senha"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-            minLength={6}
-            autoComplete="new-password"
-          />
-          <span className="toggle-password" onClick={() => setShowPassword((s) => !s)} role="button" tabIndex={0} aria-label="Alternar visibilidade da senha">
-            {showPassword ? '🙈' : '👁'}
-          </span>
-        </div>
-        <div className="password-container">
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Confirme nova senha"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-            minLength={6}
-            autoComplete="new-password"
-          />
-        </div>
+        <PasswordField
+          placeholder="Digite uma nova senha"
+          value={newPassword}
+          onChange={setNewPassword}
+          autoComplete="new-password"
+          minLength={8}
+          aria-label="Digite uma nova senha"
+        />
+        <PasswordField
+          placeholder="Confirme a nova senha"
+          value={confirmPassword}
+          onChange={setConfirmPassword}
+          autoComplete="new-password"
+          minLength={8}
+          aria-label="Confirme a nova senha"
+        />
         {error && <p className="form-error">{error}</p>}
-        <button type="submit" className="green-btn" disabled={loading}>
+        <button type="submit" disabled={loading}>
           {loading ? 'Confirmando...' : 'Confirmar'}
         </button>
       </form>

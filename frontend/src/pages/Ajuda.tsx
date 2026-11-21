@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import BackButton from '../components/BackButton';
 import Layout from '../components/Layout';
 
 const faqs = [
@@ -14,26 +15,28 @@ export default function Ajuda() {
   return (
     <Layout>
       <div className="content-container">
-        <Link to="/perfil" className="back-btn">←</Link>
-        <h2 style={{ fontSize: 20, marginTop: 30, marginBottom: 20 }}>Ajuda</h2>
-        <div className="faq-section" style={{ marginBottom: 30 }}>
-          {faqs.map((faq, i) => (
-            <div key={i} style={{ marginBottom: 10 }}>
+        <BackButton to="/perfil" />
+        <h2 className="section-title">Ajuda</h2>
+        <div className="faq-list">
+          {faqs.map((faq, index) => (
+            <div key={faq.q} className="faq-item">
               <button
                 type="button"
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 15, background: '#f9f9f9', border: 'none', borderRadius: 5, cursor: 'pointer', font: 'inherit', fontSize: 14, fontWeight: 'bold', textAlign: 'left' }}
+                className="faq-question"
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                aria-expanded={openIndex === index}
               >
                 {faq.q}
-                <i className={`bi bi-chevron-${openIndex === i ? 'up' : 'down'}`} style={{ color: '#00C853' }} />
+                {openIndex === index ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
               </button>
-              {openIndex === i && (
-                <p style={{ padding: '10px 15px', fontSize: 14, color: '#666', background: '#fff', borderRadius: 5, marginTop: 5 }}>{faq.a}</p>
-              )}
+              {openIndex === index && <p className="faq-answer">{faq.a}</p>}
             </div>
           ))}
         </div>
-        <p style={{ fontSize: 14, color: '#666' }}>Dúvidas? Entre em contato: contato@greenbox.app</p>
+        <div className="contact-box">
+          Dúvidas? Entre em contato:{' '}
+          <a href="mailto:contato@solusrecycle.app">contato@solusrecycle.app</a>
+        </div>
       </div>
     </Layout>
   );

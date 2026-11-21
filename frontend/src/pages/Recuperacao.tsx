@@ -1,32 +1,39 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import { authApi } from '../api/client';
 
 export default function Recuperacao() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setMessage('');
+    setError('');
     setLoading(true);
-    const { error } = await authApi.forgotPassword({ email: email.trim() });
+    const { error: err } = await authApi.initiateReset(email.trim(), 'USER');
     setLoading(false);
-    if (error) {
-      setMessage('Erro ao enviar. Tente novamente.');
+    if (err) {
+      setError(err);
       return;
     }
-    setMessage('Se o e-mail existir, você receberá um código.');
-    try { sessionStorage.setItem('recovery_email', email.trim()); } catch { /* ignore */ }
-    navigate('/verificacao', { state: { email: email.trim() } });
+    try {
+      sessionStorage.setItem('recovery_email', email.trim());
+    } catch {
+      // armazenamento pode estar indisponível
+    }
+    navigate('/verificacao', {
+      state: { email: email.trim(), mode: 'reset' },
+    });
   }
 
   return (
     <div className="container form-container">
+      <BackButton to="/login" />
       <h2 className="main-title">Esqueceu sua senha?</h2>
-      <p className="subtitle">Por favor, insira o email vinculado à sua conta</p>
+      <p className="subtitle">Por favor, insira o e-mail vinculado à sua conta</p>
       <form className="form" onSubmit={handleSubmit}>
         <input
           type="email"
@@ -34,13 +41,14 @@ export default function Recuperacao() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          autoComplete="email"
         />
-        {message && <p className="page-text" style={{ color: '#00C853' }}>{message}</p>}
-        <button type="submit" className="green-btn" disabled={loading}>
+        {error && <p className="form-error">{error}</p>}
+        <button type="submit" disabled={loading}>
           {loading ? 'Enviando...' : 'Enviar código'}
         </button>
       </form>
-      <p className="login-prompt">
+      <p className="auth-footer">
         Lembrou da senha? <Link to="/login" className="login-link">Faça seu login</Link>
       </p>
     </div>

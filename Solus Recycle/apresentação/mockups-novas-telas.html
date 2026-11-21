@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Solus Recycle — novas telas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; background: #e9ece9; font-family: Montserrat, Arial, sans-serif; }
+  .wrap { width: 390px; height: 844px; margin: 0 0 32px; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+  svg.screen { display: block; width: 390px; height: 844px; font-family: Montserrat, Arial, sans-serif; color: #ADADAD; }
+  .t { fill: #313131; }
+  .m { fill: #ADADAD; }
+  .g { fill: #38C958; }
+  .gd { fill: #149C68; }
+  .w { fill: #FFFFFF; }
+  .b { fill: #F1F1F1; }
+  .ts { font-size: 12px; }
+  .tb { font-size: 14px; font-weight: 600; }
+  .th { font-size: 20px; font-weight: 700; }
+  .tl { font-size: 11px; }
+</style>
+</head>
+<body>
+
+<!-- ============ BIBLIOTECA DE ÍCONES ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-leaf" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20c0-6 3-10 9-12-1 7-4 11-9 12Z"/><path d="M12 20c-3-4-3-8 0-12"/>
+    </g>
+    <g id="i-home" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 11 12 3l9 8v10h-6v-6H9v6H3V11Z"/>
+    </g>
+    <g id="i-map" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6 9 3l6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/>
+    </g>
+    <g id="i-chat" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4h16v12H8l-4 4V4Z"/><path d="M8 9h8M8 12h5"/>
+    </g>
+    <g id="i-recycle" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 4 3 5H7l2-5ZM4 14l5-1-2-4-3 5ZM12 20l-3-5h5l-2 5ZM20 14l-5 1 2 4 3-5ZM18 9l-4 2 1-5 3 3Z"/>
+    </g>
+    <g id="i-cal" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>
+    </g>
+    <g id="i-back" fill="none" stroke="#313131" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 5 8 12l7 7"/>
+    </g>
+    <g id="i-cam" fill="none" stroke="#313131" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/>
+    </g>
+    <g id="i-check" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m5 12 4 4L19 6"/>
+    </g>
+    <g id="i-pin" fill="none" stroke="#38C958" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21s7-6.3 7-12A7 7 0 1 0 5 9c0 5.7 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/>
+    </g>
+    <g id="i-clock" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+    </g>
+    <g id="i-coin" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h6M9 14h6"/>
+    </g>
+    <g id="i-gift" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="9" width="18" height="12" rx="1"/><path d="M3 13h18M12 9v12M12 9c-4 0-6-1-6-3s4-3 6 3Zm0 0c4 0 6-1 6-3s-4-3-6 3Z"/>
+    </g>
+    <g id="i-heart" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 6-8 11-8 11Z"/>
+    </g>
+    <g id="i-send" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4 12 16-8-6 16-3-6-7-2Z"/>
+    </g>
+  </defs>
+</svg>
+
+<script>
+function nav(active, labels) {
+  const centers = [39,117,195,273,351];
+  const icons = ['i-home','i-map','i-chat','i-recycle','i-cal'];
+  let s = '<rect x="0" y="772" width="390" height="72" fill="#FFFFFF"/><line x1="0" y1="772" x2="390" y2="772" stroke="#F1F1F1" stroke-width="1"/>';
+  for (let i=0;i<5;i++) {
+    const c = centers[i], on = i===active;
+    s += '<g opacity="'+(on?'1':'.65')+'"><use href="#'+icons[i]+'" x="'+(c-11)+'" y="790" width="22" height="22"'+(on?' style="stroke:#149C68"':'')+'/>';
+    s += '<text x="'+c+'" y="833" text-anchor="middle" font-size="10" font-weight="'+(on?'700':'500')+'" fill="'+(on?'#149C68':'#ADADAD')+'">'+labels[i]+'</text></g>';
+  }
+  return s;
+}
+</script>
+
+<!-- ============ 1. DASHBOARD EMPRESA ============ -->
+<div class="wrap"><svg class="screen" id="dashboard" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg">
+  <rect width="390" height="844" fill="#fff"/>
+  <circle cx="30" cy="56" r="17" fill="#38C958"/><use href="#i-leaf" x="21" y="47" width="18" height="18"/>
+  <text x="58" y="53" class="th t" font-size="21">Painel da ONG</text>
+  <text x="58" y="73" class="tl m">Solus Reciclagem — Unidade Paulista</text>
+
+  <g>
+    <rect x="20" y="94" width="110" height="70" rx="10" fill="#F4FAF5" stroke="#F1F1F1"/>
+    <text x="75" y="128" text-anchor="middle" font-size="24" font-weight="800" fill="#38C958">5</text>
+    <text x="75" y="148" text-anchor="middle" class="tl m">aguardando</text>
+    <rect x="140" y="94" width="110" height="70" rx="10" fill="#fff" stroke="#F1F1F1"/>
+    <text x="195" y="128" text-anchor="middle" font-size="24" font-weight="800" fill="#313131">12</text>
+    <text x="195" y="148" text-anchor="middle" class="tl m">agendadas</text>
+    <rect x="260" y="94" width="110" height="70" rx="10" fill="#fff" stroke="#F1F1F1"/>
+    <text x="315" y="128" text-anchor="middle" font-size="24" font-weight="800" fill="#149C68">8</text>
+    <text x="315" y="148" text-anchor="middle" class="tl m">concluídas</text>
+  </g>
+
+  <text x="20" y="192" class="tb t" font-size="15">Decisões pendentes</text>
+  <text x="370" y="192" text-anchor="end" class="tl g" font-weight="700">Ver todas</text>
+
+  <g id="decisoes"></g>
+
+  <text x="20" y="512" class="tb t" font-size="15">Coletas de hoje</text>
+  <g>
+    <rect x="20" y="526" width="350" height="72" rx="10" fill="#fff" stroke="#F1F1F1"/>
+    <circle cx="46" cy="562" r="15" fill="#F4FAF5"/><use href="#i-clock" x="37" y="553" width="18" height="18"/>
+    <text x="72" y="552" class="tb t" font-size="13">09:30 · Cooperativa Vitória</text>
+    <text x="72" y="572" class="tl m">Rua Batista de Castro, 37</text>
+    <rect x="292" y="546" width="62" height="24" rx="12" fill="#F4FAF5"/>
+    <text x="323" y="562" text-anchor="middle" font-size="10" font-weight="700" fill="#149C68">Em rota</text>
+
+    <rect x="20" y="608" width="350" height="72" rx="10" fill="#fff" stroke="#F1F1F1"/>
+    <circle cx="46" cy="644" r="15" fill="#F4FAF5"/><use href="#i-clock" x="37" y="635" width="18" height="18"/>
+    <text x="72" y="634" class="tb t" font-size="13">14:00 · Ponto Verde</text>
+    <text x="72" y="654" class="tl m">Praça da República</text>
+    <rect x="286" y="628" width="68" height="24" rx="12" fill="#F4FAF5"/>
+    <text x="320" y="644" text-anchor="middle" font-size="10" font-weight="700" fill="#149C68">Confirmada</text>
+
+    <rect x="20" y="690" width="350" height="66" rx="10" fill="#fff" stroke="#F1F1F1"/>
+    <circle cx="46" cy="723" r="15" fill="#F4FAF5"/><use href="#i-clock" x="37" y="714" width="18" height="18"/>
+    <text x="72" y="716" class="tb t" font-size="13">16:30 · Ana R.</text>
+    <text x="72" y="736" class="tl m">Plástico 3 kg · Aguardando</text>
+  </g>
+</svg></div>
+
+<!-- ============ 2. MAPA EMPRESA ============ -->
+<div class="wrap"><svg class="screen" id="mapaempresa" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg">
+  <rect width="390" height="844" fill="#fff"/>
+  <rect x="0" y="0" width="390" height="430" fill="#EDF2E9"/>
+  <g stroke="#FFFFFF" stroke-width="12" opacity=".95">
+    <path d="M-10 90H400M-10 220H400M-10 350H400M80 -10V440M200 -10V440M320 -10V440"/>
+  </g>
+  <g fill="#DCE9D6" opacity=".9">
+    <rect x="20" y="112" width="46" height="88" rx="3"/><rect x="218" y="112" width="82" height="88" rx="3"/>
+    <rect x="20" y="242" width="46" height="88" rx="3"/><rect x="98" y="242" width="82" height="88" rx="3"/>
+    <rect x="338" y="242" width="44" height="88" rx="3"/><rect x="218" y="372" width="82" height="46" rx="3"/>
+  </g>
+  <circle cx="196" cy="218" r="98" fill="#38C958" fill-opacity=".10" stroke="#38C958" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <rect x="118" y="16" width="154" height="28" rx="14" fill="#fff" stroke="#F1F1F1"/>
+  <text x="195" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#313131">Raio de atendimento: 5 km</text>
+  <g transform="translate(196,218)">
+    <use href="#i-pin" x="-14" y="-18" width="28" height="28" style="stroke:#149C68"/>
+    <circle cx="0" cy="-5" r="4" fill="#38C958"/>
+    <path d="M-9 -44h18M-9 -38h18" stroke="#149C68" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <rect x="24" y="386" width="240" height="28" rx="14" fill="#fff" stroke="#F1F1F1"/>
+  <text x="36" y="404" font-size="10" fill="#ADADAD">Arraste o pino para marcar o local exato</text>
+
+  <path d="M0 452 Q0 430 22 430 H368 Q390 430 390 452 V772 H0 Z" fill="#fff"/>
+  <rect x="175" y="442" width="40" height="5" rx="2.5" fill="#E2E2E2"/>
+  <text x="20" y="482" class="th t" font-size="18">Editar ponto de coleta</text>
+
+  <text x="22" y="509" class="tl m">ENDEREÇO</text>
+  <rect x="20" y="516" width="350" height="42" rx="9" fill="#fff" stroke="#F1F1F1"/>
+  <text x="34" y="542" class="tb t" font-size="13">Av. Santos Dumont, 764</text>
+  <text x="22" y="578" class="tl m">COMPLEMENTO</text>
+  <rect x="20" y="585" width="350" height="42" rx="9" fill="#fff" stroke="#F1F1F1"/>
+  <text x="34" y="611" class="tb t" font-size="13">Galpão 2 — entrada pela lateral</text>
+
+  <text x="22" y="650" class="tb t" font-size="12">Raio de atendimento · 5 km</text>
+  <rect x="22" y="662" width="346" height="5" rx="2.5" fill="#F1F1F1"/>
+  <rect x="22" y="662" width="200" height="5" rx="2.5" fill="#38C958"/>
+  <circle cx="222" cy="664" r="9" fill="#38C958" stroke="#fff" stroke-width="3"/>
+
+  <text x="22" y="694" class="tb t" font-size="12">Recebe materiais</text>
+  <rect x="330" y="680" width="38" height="20" rx="10" fill="#38C958"/><circle cx="359" cy="690" r="7" fill="#fff"/>
+  <text x="22" y="726" class="tb t" font-size="12">Coleta em domicílio</text>
+  <rect x="330" y="712" width="38" height="20" rx="10" fill="#38C958"/><circle cx="359" cy="722" r="7" fill="#fff"/>
+
+  <rect x="20" y="742" width="350" height="24" rx="8" fill="#38C958" opacity="0"/>
+</svg></div>
+
+<!-- ============ 3. AGENDA EMPRESA ============ -->
+<div class="wrap"><svg class="screen" id="agendaempresa" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg">
+  <rect width="390" height="844" fill="#fff"/>
+  <circle cx="30" cy="56" r="17" fill="#38C958"/><use href="#i-leaf" x="21" y="47" width="18" height="18"/>
+  <text x="58" y="62" class="th t" font-size="19">Agenda da organização</text>
+
+  <rect x="20" y="88" width="350" height="34" rx="9" fill="#F1F1F1"/>
+  <rect x="20" y="88" width="112" height="34" rx="9" fill="#38C958"/>
+  <text x="76" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Hoje</text>
+  <text x="191" y="110" text-anchor="middle" font-size="12" font-weight="600" fill="#ADADAD">Semana</text>
+  <text x="306" y="110" text-anchor="middle" font-size="12" font-weight="600" fill="#ADADAD">Mês</text>
+
+  <text x="20" y="150" class="tb t" font-size="13">Quinta, 20 de novembro</text>
+  <text x="370" y="150" text-anchor="end" class="tl g" font-weight="700">4 coletas</text>
+
+  <g id="linhaagenda"></g>
+
+  <rect x="20" y="472" width="350" height="282" rx="12" fill="#F9FCF9" stroke="#F1F1F1"/>
+  <text x="36" y="502" class="tb t" font-size="14">Coleta #1042</text>
+  <rect x="278" y="486" width="78" height="22" rx="11" fill="#E8F7EC"/>
+  <text x="317" y="501" text-anchor="middle" font-size="10" font-weight="700" fill="#149C68">Em rota</text>
+  <text x="36" y="530" class="tl m">João P. · Eletrônicos 8 kg</text>
+  <text x="36" y="552" class="tl m">Av. Paulista, 1000 — Bela Vista</text>
+  <text x="36" y="574" class="tl m">Janela 11:00–12:00 · 2,4 km de distância</text>
+  <line x1="36" y1="592" x2="354" y2="592" stroke="#F1F1F1"/>
+  <text x="36" y="616" class="tb t" font-size="12">Status da confirmação</text>
+  <circle cx="46" cy="640" r="6" fill="#38C958"/><text x="60" y="644" class="tl t">Solicitação enviada</text>
+  <circle cx="46" cy="664" r="6" fill="#38C958"/><text x="60" y="668" class="tl t">Empresa aceitou a coleta</text>
+  <circle cx="46" cy="688" r="6" fill="#fff" stroke="#38C958" stroke-width="2"/><text x="60" y="692" class="tl t">Aguardando QR de confirmação</text>
+  <rect x="36" y="710" width="148" height="30" rx="8" fill="#fff" stroke="#149C68"/>
+  <text x="110" y="729" text-anchor="middle" font-size="11" font-weight="700" fill="#149C68">Abrir chat</text>
+  <rect x="196" y="710" width="158" height="30" rx="8" fill="#38C958"/>
+  <text x="275" y="729" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Confirmar com QR</text>
+</svg></div>
+
+<!-- ============ 4. CONVERSAS ============ -->
+<div class="wrap"><svg class="screen" id="conversas" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg">
+  <rect width="390" height="844" fill="#fff"/>
+  <use href="#i-back" x="20" y="38" width="20" height="20"/>
+  <circle cx="66" cy="54" r="18" fill="#E8F7EC"/><text x="66" y="59" text-anchor="middle" font-size="11" font-weight="700" fill="#149C68">MS</text>
+  <text x="94" y="51" class="tb t" font-size="15">Maria S.</text>
+  <text x="94" y="70" class="tl m">Coleta #1042 · Av. Paulista, 1000</text>
+
+  <rect x="20" y="90" width="350" height="34" rx="9" fill="#F4FAF5"/>
+  <use href="#i-pin" x="30" y="97" width="18" height="18"/>
+  <text x="56" y="112" class="tl t" font-weight="600">Papel e plástico · 6 kg · Hoje, 11:00</text>
+
+  <g>
+    <rect x="20" y="148" width="248" height="54" rx="12" fill="#F5F5F5"/>
+    <text x="34" y="171" class="ts t">Bom dia! Deixei os materiais</text>
+    <text x="34" y="188" class="ts t">na portaria.</text>
+
+    <rect x="122" y="216" width="248" height="54" rx="12" fill="#38C958"/>
+    <text x="136" y="239" class="ts w">Ótimo, obrigado! Vou confirmar</text>
+    <text x="136" y="256" class="ts w">o recebimento pelo QR.</text>
+
+    <rect x="20" y="284" width="230" height="54" rx="12" fill="#F5F5F5"/>
+    <text x="34" y="307" class="ts t">Posso retirar até as 12h?</text>
+    <text x="34" y="324" class="ts t">Obrigada!</text>
+    <text x="370" y="360" text-anchor="end" class="tl m">11:04</text>
+  </g>
+
+  <text x="20" y="398" class="tl m">Respostas rápidas</text>
+  <g>
+    <rect x="20" y="410" width="112" height="32" rx="16" fill="#fff" stroke="#149C68"/>
+    <text x="76" y="430" text-anchor="middle" font-size="10" font-weight="700" fill="#149C68">Estou a caminho</text>
+    <rect x="140" y="410" width="138" height="32" rx="16" fill="#fff" stroke="#149C68"/>
+    <text x="209" y="430" text-anchor="middle" font-size="10" font-weight="700" fill="#149C68">Pode deixar na portaria</text>
+    <rect x="286" y="410" width="84" height="32" rx="16" fill="#fff" stroke="#F1F1F1"/>
+    <text x="328" y="430" text-anchor="middle" font-size="10" font-weight="600" fill="#ADADAD">Preciso de ajuda</text>
+  </g>
+
+  <rect x="20" y="712" width="310" height="46" rx="12" fill="#F7F7F7" stroke="#F1F1F1"/>
+  <text x="36" y="740" class="ts m">Escreva uma mensagem</text>
+  <circle cx="352" cy="735" r="23" fill="#38C958"/><use href="#i-send" x="343" y="726" width="18" height="18"/>
+</svg></div>
+
+<!-- ============ 5. QR DO USUÁRIO ============ -->
+<div class="wrap"><svg class="screen" id="qrusuario" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg">
+  <rect width="390" height="844" fill="#fff"/>
+  <use href="#i-back" x="20" y="40" width="20" height="20"/>
+  <text x="52" y="60" class="th t" font-size="20">Confirmar coleta</text>
+  <text x="20" y="86" class="ts m">Mostre este QR para a empresa</text>
+
+  <rect x="22" y="106" width="346" height="444" rx="14" fill="#fff" stroke="#F1F1F1" stroke-width="1.5"/>
+  <g transform="translate(71,146)" fill="#111111">
+    <g transform="translate(0,0)"><rect width="42" height="42"/><rect x="7" y="7" width="28" height="28" fill="#fff"/><rect x="14" y="14" width="14" height="14"/></g>
+    <g transform="translate(208,0)"><rect width="42" height="42"/><rect x="7" y="7" width="28" height="28" fill="#fff"/><rect x="14" y="14" width="14" height="14"/></g>
+    <g transform="translate(0,208)"><rect width="42" height="42"/><rect x="7" y="7" width="28" height="28" fill="#fff"/><rect x="14" y="14" width="14" height="14"/></g>
+    <g>
+      <rect x="56" y="0" width="8" height="8"/><rect x="80" y="8" width="16" height="8"/><rect x="112" y="0" width="8" height="16"/>
+      <rect x="144" y="8" width="8" height="8"/><rect x="176" y="0" width="16" height="8"/>
+      <rect x="0" y="56" width="8" height="16"/><rect x="24" y="64" width="16" height="8"/><rect x="56" y="56" width="8" height="8"/>
+      <rect x="88" y="56" width="16" height="16"/><rect x="120" y="64" width="8" height="8"/><rect x="152" y="56" width="8" height="16"/>
+      <rect x="184" y="64" width="16" height="8"/><rect x="208" y="56" width="8" height="8"/><rect x="232" y="56" width="16" height="16"/>
+      <rect x="56" y="88" width="16" height="8"/><rect x="88" y="80" width="8" height="16"/><rect x="120" y="88" width="16" height="8"/>
+      <rect x="152" y="80" width="8" height="8"/><rect x="184" y="88" width="16" height="16"/><rect x="232" y="80" width="8" height="8"/>
+      <rect x="0" y="112" width="16" height="8"/><rect x="32" y="120" width="8" height="16"/><rect x="64" y="112" width="16" height="8"/>
+      <rect x="104" y="112" width="8" height="8"/><rect x="136" y="120" width="16" height="8"/><rect x="176" y="112" width="8" height="16"/>
+      <rect x="208" y="120" width="16" height="8"/><rect x="240" y="112" width="8" height="8"/>
+      <rect x="56" y="144" width="8" height="16"/><rect x="88" y="152" width="16" height="8"/><rect x="128" y="144" width="8" height="8"/>
+      <rect x="160" y="152" width="16" height="8"/><rect x="200" y="144" width="8" height="16"/><rect x="232" y="152" width="16" height="8"/>
+      <rect x="0" y="184" width="16" height="16"/><rect x="32" y="176" width="8" height="8"/><rect x="64" y="184" width="16" height="8"/>
+      <rect x="104" y="176" width="8" height="16"/><rect x="136" y="184" width="16" height="8"/><rect x="176" y="176" width="8" height="8"/>
+      <rect x="208" y="184" width="16" height="16"/><rect x="240" y="176" width="8" height="8"/>
+      <rect x="56" y="216" width="8" height="16"/><rect x="88" y="224" width="16" height="8"/><rect x="120" y="216" width="8" height="8"/>
+      <rect x="152" y="224" width="16" height="16"/><rect x="192" y="216" width="8" height="8"/><rect x="232" y="224" width="16" height="8"/>
+    </g>
+  </g>
+  <text x="195" y="474" text-anchor="middle" class="tb t" font-size="14">Coleta #1042</text>
+  <rect x="128" y="490" width="134" height="28" rx="14" fill="#F4FAF5"/>
+  <use href="#i-clock" x="136" y="494" width="18" height="18"/>
+  <text x="208" y="509" text-anchor="middle" font-size="11" font-weight="700" fill="#149C68">Válido por 09:58</text>
+
+  <use href="#i-pin" x="24" y="574" width="18" height="18"/>
+  <text x="50" y="588" class="ts t">Solus Reciclagem — Unidade Paulista</text>
+  <use href="#i-recycle" x="24" y="610" width="18" height="18"/>
+  <text x="50" y="624" class="ts t">Papel e plástico · 6 kg</text>
+  <text x="24" y="662" class="tl m">A empresa escaneia este código para</text>
+  <text x="24" y="678" class="tl m">confirmar o recebimento dos materiais.</text>
+  <rect x="20" y="700" width="350" height="48" rx="10" fill="#38C958"/>
+  <text x="195" y="729" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Atualizar QR</text>
+</svg></div>
+
+<!-- ============ 6. ESCANEAR QR (EMPRESA) ============ -->
+<div class="wrap"><svg class="screen" id="escanear" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg">
+  <rect width="390" height="844" fill="#fff"/>
+  <use href="#i-back" x="20" y="38" width="20" height="20"/>
+  <text x="52" y="60" class="th t" font-size="20">Escanear QR</text>
+  <text x="20" y="86" class="ts m">Aponte para o código do usuário</text>
+
+  <rect x="20" y="104" width="350" height="322" rx="14" fill="#2C2C2C"/>
+  <g transform="translate(70,150)" fill="#FFFFFF">
+    <g transform="translate(0,0)"><rect width="34" height="34"/><rect x="6" y="6" width="22" height="22" fill="#2C2C2C"/><rect x="11" y="11" width="12" height="12"/></g>
+    <g transform="translate(166,0)"><rect width="34" height="34"/><rect x="6" y="6" width="22" height="22" fill="#2C2C2C"/><rect x="11" y="11" width="12" height="12"/></g>
+    <g transform="translate(0,166)"><rect width="34" height="34"/><rect x="6" y="6" width="22" height="22" fill="#2C2C2C"/><rect x="11" y="11" width="12" height="12"/></g>
+    <rect x="48" y="4" width="12" height="8"/><rect x="76" y="12" width="8" height="12"/><rect x="100" y="0" width="12" height="12"/>
+    <rect x="128" y="8" width="8" height="8"/><rect x="4" y="48" width="8" height="12"/><rect x="32" y="56" width="12" height="8"/>
+    <rect x="60" y="48" width="8" height="8"/><rect x="88" y="56" width="12" height="12"/><rect x="120" y="48" width="8" height="8"/>
+    <rect x="148" y="56" width="12" height="8"/><rect x="4" y="92" width="12" height="8"/><rect x="36" y="88" width="8" height="12"/>
+    <rect x="64" y="96" width="12" height="8"/><rect x="104" y="88" width="8" height="8"/><rect x="132" y="96" width="12" height="12"/>
+    <rect x="48" y="128" width="8" height="12"/><rect x="80" y="136" width="12" height="8"/><rect x="112" y="128" width="8" height="8"/>
+    <rect x="144" y="136" width="12" height="8"/>
+  </g>
+  <g stroke="#38C958" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M46 138v-18a8 8 0 0 1 8-8h18"/><path d="M318 138v-18a8 8 0 0 0-8-8h-18"/>
+    <path d="M46 392v18a8 8 0 0 0 8 8h18"/><path d="M318 392v18a8 8 0 0 1-8 8h-18"/>
+  </g>
+  <rect x="70" y="240" width="250" height="2" fill="#38C958" opacity=".85"/>
+  <circle cx="48" cy="140" r="15" fill="#000" opacity=".35"/><use href="#i-cam" x="39" y="131" width="18" height="18" style="stroke:#fff"/>
+  <rect x="310" y="394" width="50" height="22" rx="11" fill="#000" opacity=".35"/>
+  <text x="335" y="409" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">Galeria</text>
+
+  <text x="20" y="468" class="tb t" font-size="15">Última leitura</text>
+  <rect x="20" y="482" width="350" height="62" rx="10" fill="#F9FCF9" stroke="#F1F1F1"/>
+  <circle cx="48" cy="513" r="17" fill="#E8F7EC"/><text x="48" y="517" text-anchor="middle" font-size="11" font-weight="700" fill="#149C68">MS</text>
+  <text x="76" y="508" class="tb t" font-size="13">Maria S. · Coleta #1042</text>
+  <text x="76" y="527" class="tl m">Papel e plástico · 6 kg</text>
+
+  <text x="22" y="568" class="tl m">PESO REAL</text>
+  <rect x="20" y="575" width="350" height="42" rx="9" fill="#fff" stroke="#F1F1F1"/>
+  <text x="34" y="601" class="tb t" font-size="13">6,2 kg</text>
+  <text x="22" y="637" class="tl m">FOTO DO MATERIAL</text>
+  <rect x="20" y="644" width="90" height="60" rx="9" fill="#F7F7F7" stroke="#F1F1F1"/>
+  <use href="#i-cam" x="53" y="662" width="24" height="24" style="stroke:#ADADAD"/>
+
+  <rect x="20" y="712" width="350" height="46" rx="10" fill="#38C958"/>
+  <use href="#i-check" x="120" y="724" width="18" height="18"/>
+  <text x="215" y="740" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Confirmar recebimento</text>
+</svg></div>
+
+<!-- ============ 7. RECOMPENSAS ============ -->
+<div class="wrap"><svg class="screen" id="recompensas" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg">
+  <rect width="390" height="844" fill="#fff"/>
+  <circle cx="30" cy="56" r="17" fill="#38C958"/><use href="#i-leaf" x="21" y="47" width="18" height="18"/>
+  <text x="58" y="61" class="th t" font-size="20">Meus créditos</text>
+  <text x="20" y="88" class="ts m">Seu impacto vale</text>
+
+  <rect x="20" y="104" width="350" height="132" rx="14" fill="#38C958"/>
+  <text x="40" y="152" font-size="34" font-weight="800" fill="#fff">240 pontos</text>
+  <text x="40" y="182" font-size="13" font-weight="600" fill="#FFFFFF">≈ R$ 12,00 em crédito de reciclagem</text>
+  <rect x="40" y="200" width="310" height="6" rx="3" fill="#FFFFFF" opacity=".35"/>
+  <rect x="40" y="200" width="220" height="6" rx="3" fill="#FFFFFF"/>
+  <text x="40" y="224" font-size="10" font-weight="600" fill="#FFFFFF">60 pts para o nível Prata</text>
+
+  <text x="20" y="270" class="tb t" font-size="15">Como usar</text>
+  <g>
+    <rect x="20" y="284" width="350" height="48" rx="10" fill="#fff" stroke="#F1F1F1"/>
+    <use href="#i-coin" x="34" y="297" width="22" height="22"/>
+    <text x="68" y="313" class="tb t" font-size="12">Desconto em taxas do app</text>
+    <path d="m344 303 6 6-6 6" fill="none" stroke="#ADADAD" stroke-width="2"/>
+
+    <rect x="20" y="340" width="350" height="48" rx="10" fill="#fff" stroke="#F1F1F1"/>
+    <use href="#i-gift" x="34" y="353" width="22" height="22"/>
+    <text x="68" y="369" class="tb t" font-size="12">Benefícios na coletora</text>
+    <path d="m344 359 6 6-6 6" fill="none" stroke="#ADADAD" stroke-width="2"/>
+
+    <rect x="20" y="396" width="350" height="48" rx="10" fill="#fff" stroke="#F1F1F1"/>
+    <use href="#i-heart" x="34" y="409" width="22" height="22"/>
+    <text x="68" y="425" class="tb t" font-size="12">Doar para uma ONG</text>
+    <path d="m344 415 6 6-6 6" fill="none" stroke="#ADADAD" stroke-width="2"/>
+  </g>
+
+  <text x="20" y="480" class="tb t" font-size="15">Últimas coletas</text>
+  <g>
+    <rect x="20" y="494" width="350" height="52" rx="10" fill="#F9FCF9" stroke="#F1F1F1"/>
+    <circle cx="44" cy="520" r="13" fill="#38C958"/><use href="#i-check" x="37" y="513" width="14" height="14"/>
+    <text x="68" y="516" class="tb t" font-size="12">+40 pts · Papel</text>
+    <text x="68" y="534" class="tl m">12/11 · confirmado por QR</text>
+    <text x="356" y="524" text-anchor="end" class="tb g" font-size="12">40</text>
+
+    <rect x="20" y="554" width="350" height="52" rx="10" fill="#fff" stroke="#F1F1F1"/>
+    <circle cx="44" cy="580" r="13" fill="#E8F7EC"/><use href="#i-check" x="37" y="573" width="14" height="14" style="stroke:#149C68"/>
+    <text x="68" y="576" class="tb t" font-size="12">+25 pts · Vidro</text>
+    <text x="68" y="594" class="tl m">04/11 · confirmado por QR</text>
+    <text x="356" y="584" text-anchor="end" class="tb g" font-size="12">25</text>
+  </g>
+
+  <text x="20" y="638" class="tl m">Créditos liberados após a confirmação</text>
+  <text x="20" y="654" class="tl m">por QR no momento da coleta.</text>
+  <rect x="20" y="684" width="350" height="44" rx="10" fill="#fff" stroke="#149C68"/>
+  <text x="195" y="711" text-anchor="middle" font-size="13" font-weight="700" fill="#149C68">Ver extrato de impactos</text>
+</svg></div>
+
+<script>
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  function S(tag, attrs, text) {
+    const node = document.createElementNS(NS, tag);
+    Object.entries(attrs || {}).forEach(([key, value]) => node.setAttribute(key, String(value)));
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+  function add(parent, child) { parent.appendChild(child); return child; }
+
+  function buildNav(screenId, active) {
+    const svg = document.getElementById(screenId);
+    const g = add(svg, S('g'));
+    add(g, S('rect', { x: 0, y: 772, width: 390, height: 72, fill: '#FFFFFF' }));
+    add(g, S('line', { x1: 0, y1: 772, x2: 390, y2: 772, stroke: '#F1F1F1', 'stroke-width': 1 }));
+    const centers = [39, 117, 195, 273, 351];
+    const icons = ['i-home', 'i-map', 'i-chat', 'i-recycle', 'i-cal'];
+    const labels = ['Início', 'Mapa', 'Conversas', 'Reciclagem', 'Agenda'];
+    centers.forEach((c, i) => {
+      const on = i === active;
+      const color = on ? '#149C68' : '#ADADAD';
+      const item = add(g, S('g', { opacity: on ? '1' : '.65' }));
+      add(item, S('use', { href: '#' + icons[i], x: c - 11, y: 790, width: 22, height: 22, style: 'color:' + color }));
+      add(item, S('text', {
+        x: c, y: 833, 'text-anchor': 'middle', 'font-size': 10,
+        'font-weight': on ? 700 : 500, fill: color
+      }, labels[i]));
+    });
+  }
+
+  function buildDecisoes() {
+    const g = document.getElementById('decisoes');
+    const dados = [
+      ['MS', 'Maria S.', 'Papel e plástico · 4 kg', 'Av. Paulista, 1000'],
+      ['JP', 'João P.', 'Eletrônicos · 8 kg', 'Rua Augusta, 420'],
+      ['AR', 'Ana R.', 'Vidro · 5 kg', 'Rua Consolação, 900']
+    ];
+    dados.forEach((d, i) => {
+      const y = 206 + i * 94;
+      add(g, S('rect', { x: 20, y, width: 350, height: 86, rx: 10, fill: '#fff', stroke: '#F1F1F1' }));
+      add(g, S('circle', { cx: 48, cy: y + 31, r: 17, fill: '#E8F7EC' }));
+      add(g, S('text', { x: 48, y: y + 35, 'text-anchor': 'middle', 'font-size': 11, 'font-weight': 700, fill: '#149C68' }, d[0]));
+      add(g, S('text', { x: 76, y: y + 27, class: 'tb t', 'font-size': 13 }, d[1]));
+      add(g, S('text', { x: 76, y: y + 45, class: 'tl m' }, d[2]));
+      add(g, S('text', { x: 76, y: y + 63, class: 'tl m' }, d[3]));
+      add(g, S('rect', { x: 252, y: y + 48, width: 56, height: 28, rx: 8, fill: '#38C958' }));
+      add(g, S('text', { x: 280, y: y + 66, 'text-anchor': 'middle', 'font-size': 10, 'font-weight': 700, fill: '#fff' }, 'Receber'));
+      add(g, S('rect', { x: 314, y: y + 48, width: 52, height: 28, rx: 8, fill: '#fff', stroke: '#38C958' }));
+      add(g, S('text', { x: 340, y: y + 66, 'text-anchor': 'middle', 'font-size': 10, 'font-weight': 700, fill: '#149C68' }, 'Buscar'));
+    });
+  }
+
+  function buildLinhaAgenda() {
+    const g = document.getElementById('linhaagenda');
+    const itens = [
+      ['09:30', 'Maria S.', 'Papel 4 kg · Confirmada', '#149C68'],
+      ['11:00', 'João P.', 'Eletrônicos 8 kg · Em rota', '#38C958'],
+      ['14:00', 'Coop. Vitória', 'Vidro 12 kg · Recebida', '#149C68'],
+      ['16:30', 'Ana R.', 'Plástico 3 kg · Aguardando', '#ADADAD']
+    ];
+    itens.forEach((d, i) => {
+      const y = 164 + i * 73;
+      const selected = i === 1;
+      add(g, S('rect', { x: 20, y, width: 350, height: 64, rx: 10, fill: selected ? '#F4FAF5' : '#fff', stroke: selected ? '#38C958' : '#F1F1F1' }));
+      add(g, S('circle', { cx: 44, cy: y + 32, r: 14, fill: selected ? '#38C958' : '#F4FAF5' }));
+      add(g, S('text', { x: 44, y: y + 36, 'text-anchor': 'middle', 'font-size': 9, 'font-weight': 700, fill: selected ? '#fff' : '#149C68' }, d[0].slice(0, 2)));
+      add(g, S('text', { x: 70, y: y + 27, class: 'tb t', 'font-size': 12 }, d[0] + ' · ' + d[1]));
+      add(g, S('text', { x: 70, y: y + 46, class: 'tl m' }, d[2]));
+      add(g, S('circle', { cx: 350, cy: y + 32, r: 4, fill: d[3] }));
+    });
+  }
+
+  buildDecisoes();
+  buildLinhaAgenda();
+  buildNav('dashboard', 0);
+  buildNav('mapaempresa', 1);
+  buildNav('agendaempresa', 4);
+  buildNav('conversas', 2);
+  buildNav('qrusuario', 0);
+  buildNav('escanear', 4);
+  buildNav('recompensas', 3);
+})();
+</script>
+</body>
+</html>

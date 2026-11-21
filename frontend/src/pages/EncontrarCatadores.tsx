@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 import Layout from '../components/Layout';
 
 const collectors = [
-  { name: 'Vera Lúcia', info: '47 coletas realizadas - Carroça', materials: 'Papel/Papelão, Latas e Plásticos', img: '/user-vera.png' },
-  { name: 'Pedro Amaral', info: 'Catador Autônomo - Bicicleta', materials: 'Latas e Garrafas de Vidro', img: '/user-pedro.png' },
-  { name: 'Moacir Pereira', info: 'Catador Autônomo - Carroça', materials: 'Papel, Plástico e Metal', img: '/user-moacir.png' },
+  { name: 'Vera Lúcia', info: 'Catadora Autônoma - Drone', materials: 'Papel/Papelão, Latas e Plásticos' },
+  { name: 'Pedro Amaral', info: 'Catador Autônomo - Bicicleta', materials: 'Latas e Garrafas de Vidro' },
+  { name: 'Moacir Pereira', info: 'Catador Autônomo - Carro', materials: 'Latas e Plásticos' },
+  { name: 'Jaqueline Teixeira', info: 'Catadora Autônoma - Bicicleta', materials: 'Garrafas de Vidro e Plásticos' },
 ];
 
 export default function EncontrarCatadores() {
@@ -13,24 +15,27 @@ export default function EncontrarCatadores() {
 
   return (
     <Layout>
-      <div className="content-container" style={{ padding: 20 }}>
-        <Link to="/home" className="back-btn">←</Link>
-        <h2 style={{ fontSize: 20, marginBottom: 15 }}>Encontre e converse com um catador perto de você</h2>
+      <div className="content-container">
+        <BackButton to="/home" />
+        <h2 className="section-title">Encontre e converse com um catador perto de você</h2>
         <input
           type="text"
           placeholder="Digite seu CEP"
           className="cep-input"
           value={cep}
           onChange={(e) => setCep(e.target.value)}
+          aria-label="CEP"
         />
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 15 }}>
-          {collectors.map((c, i) => (
-            <Link to="/detalhes-ponto" key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: 15, background: '#f9f9f9', borderRadius: 10, color: 'inherit' }}>
-              <img src={c.img} alt={c.name} style={{ width: 50, height: 50, borderRadius: '50%', objectFit: 'cover' }} onError={(e) => { (e.target as HTMLImageElement).src = '/User.jpg'; }} />
+        <div className="collector-list">
+          {collectors.map((collector) => (
+            <Link to="/detalhes-ponto" key={collector.name} className="collector-card">
+              <span className="collector-avatar" aria-hidden="true">
+                {collector.name.charAt(0)}
+              </span>
               <div>
-                <h3 style={{ fontSize: 16, marginBottom: 5 }}>{c.name}</h3>
-                <p style={{ fontSize: 14, color: '#666' }}>{c.info}</p>
-                <p style={{ fontSize: 14, color: '#666' }}>{c.materials}</p>
+                <h3>{collector.name}</h3>
+                <p>{collector.info}</p>
+                <p>{collector.materials}</p>
               </div>
             </Link>
           ))}

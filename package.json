@@ -1,5 +1,5 @@
 {
-  "name": "app_green_reciclagem",
+  "name": "solus-recycle-app",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
